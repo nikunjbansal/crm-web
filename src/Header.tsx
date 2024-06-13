@@ -1,0 +1,45 @@
+import AppBar from '@mui/material/AppBar';
+import Box from '@mui/material/Box';
+import Toolbar from '@mui/material/Toolbar';
+import Typography from '@mui/material/Typography';
+import Container from '@mui/material/Container';
+import AdbIcon from '@mui/icons-material/Adb';
+import { Link } from '@mui/material';
+
+const pages = ['Products', 'Pricing', 'Blog'];
+
+export default () => {
+  return (
+    <AppBar position="static">
+      <Container maxWidth="xl">
+        <Toolbar disableGutters>
+          <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
+          <Typography
+            variant="h6"
+            noWrap
+            component="a"
+            href="#app-bar-with-responsive-menu"
+            sx={{
+              mr: 2,
+              display: { xs: 'none', md: 'flex' },
+              fontFamily: 'monospace',
+              fontWeight: 700,
+              letterSpacing: '.3rem',
+              color: 'inherit',
+              textDecoration: 'none',
+            }}
+          >
+            LOGO
+          </Typography>
+          <Box sx={{ flexGrow: 0.1, display: 'flex', justifyContent: 'space-between', ml: 6 }}>
+              {pages.map((page) => (
+                <Link href={`/${page}`} underline="hover" color="white">
+                  <Typography textAlign="center">{page}</Typography>
+                </Link>
+              ))}
+          </Box>
+        </Toolbar>
+      </Container>
+    </AppBar>
+  );
+}

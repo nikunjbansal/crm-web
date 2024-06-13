@@ -41,14 +41,18 @@ const ListComponent = <T,>({ items, fields, actions }: Props<T>) => {
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
   const showActions = actions !== undefined;
 
+  if(items.length === 0) {
+    return (
+      <Typography variant="h6" align="center" color="textSecondary" sx={{mt: 2}}>
+        No records found. Click on the add button below to create a new record.
+      </Typography>
+    ) 
+  }
+
   if (isMobile) {
     return (
       <Grid container spacing={3}>
-        {items.length === 0 ? (
-          <Typography variant="body1" align="center" color="textSecondary">
-            No records found.
-          </Typography>
-        ) : (
+        {
           items.map((item, index) => (
             <Grid item xs={12} key={index}>
               <Card
@@ -91,7 +95,7 @@ const ListComponent = <T,>({ items, fields, actions }: Props<T>) => {
               </Card>
             </Grid>
           ))
-        )}
+        }
       </Grid>
     );
   }

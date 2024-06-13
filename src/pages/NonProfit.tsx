@@ -19,7 +19,7 @@ import AddEditDialog from "../components/AddEditDialog";
 import EditIcon from "@mui/icons-material/Edit";
 
 const MainComponent = () => {
-  const { data: nonProfits, isLoading, refetch } = useGetNonProfitsQuery();
+  const { data: nonProfits, isLoading } = useGetNonProfitsQuery();
   const [addNonProfit] = useAddNonProfitMutation();
   const [updateNonProfit] = useUpdateNonProfitMutation();
   const [selectedNonProfit, setSelectedNonProfit] = useState<NonProfit | undefined>(undefined);
@@ -37,7 +37,6 @@ const MainComponent = () => {
       await addNonProfit(nonProfit);
     }
     setShowDialog(false);
-    refetch();
   };
 
   const actions: ActionConfig<NonProfit>[] = [

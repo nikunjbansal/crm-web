@@ -26,6 +26,8 @@ const LogoTypography = styled(Typography)({
 const StyledLink = styled(NavLink)({
   color: 'inherit',
   marginRight: '16px',
+  fontWeight: 500,
+  fontFamily: 'arial',
 });
 
 const Header = () => {
@@ -47,7 +49,7 @@ const Header = () => {
               <StyledLink 
                 key={page.label} 
                 to={page.path} 
-                style={({ isActive, isPending, isTransitioning }) => {
+                style={({ isActive }) => {
                   return {
                     textDecoration: isActive ? 'underline' : 'none'
                   };

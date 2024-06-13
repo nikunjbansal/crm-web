@@ -19,7 +19,7 @@ import SendIcon from "@mui/icons-material/Send";
 import { useSnackbar } from "../context";
 
 const EmailTemplateComponent = () => {
-  const { data: emailTemplates, isLoading, refetch } = useGetEmailTemplatesQuery();
+  const { data: emailTemplates, isLoading } = useGetEmailTemplatesQuery();
   const [addEmailTemplate] = useAddEmailTemplateMutation();
   const [updateEmailTemplate] = useUpdateEmailTemplateMutation();
   const [sendEmail] = useSendEmailMutation();
@@ -41,7 +41,6 @@ const EmailTemplateComponent = () => {
       await addEmailTemplate(emailTemplate);
     }
     setShowDialog(false);
-    refetch();
   };
 
   const actions: ActionConfig<EmailTemplate>[] = [

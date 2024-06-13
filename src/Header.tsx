@@ -1,45 +1,66 @@
-import AppBar from '@mui/material/AppBar';
-import Box from '@mui/material/Box';
-import Toolbar from '@mui/material/Toolbar';
-import Typography from '@mui/material/Typography';
-import Container from '@mui/material/Container';
+import { AppBar, Box, Container, Toolbar, Typography } from '@mui/material';
 import AdbIcon from '@mui/icons-material/Adb';
-import { Link } from '@mui/material';
+import { styled } from '@mui/system';
+import { NavLink, useLocation } from 'react-router-dom';
 
-const pages = ['Products', 'Pricing', 'Blog'];
+const pages = [
+  { label: 'Non Profits', path: '/non-profits' },
+  { label: 'Email Template', path: '/email-template' },
+  { label: 'Sent Emails', path: '/sent-emails' },
+];
 
-export default () => {
+const StyledAppBar = styled(AppBar)({
+  backgroundColor: '#1976d2', // Adjust as needed
+});
+
+const LogoTypography = styled(Typography)({
+  alignItems: 'center',
+  fontWeight: 700,
+  fontFamily: 'monospace',
+  letterSpacing: '0.3rem',
+  color: 'inherit',
+  textDecoration: 'none',
+  marginRight: '12px', // Adjust margin as needed
+});
+
+const StyledLink = styled(NavLink)({
+  color: 'inherit',
+  marginRight: '16px',
+});
+
+const Header = () => {
+  
+  const location = useLocation()
+
+  console.log("location", location.pathname);
+
   return (
-    <AppBar position="static">
+    <StyledAppBar position="static">
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
-          <Typography
-            variant="h6"
-            noWrap
-            component="a"
-            href="#app-bar-with-responsive-menu"
-            sx={{
-              mr: 2,
-              display: { xs: 'none', md: 'flex' },
-              fontFamily: 'monospace',
-              fontWeight: 700,
-              letterSpacing: '.3rem',
-              color: 'inherit',
-              textDecoration: 'none',
-            }}
-          >
-            LOGO
-          </Typography>
-          <Box sx={{ flexGrow: 0.1, display: 'flex', justifyContent: 'space-between', ml: 6 }}>
-              {pages.map((page) => (
-                <Link href={`/${page}`} underline="hover" color="white">
-                  <Typography textAlign="center">{page}</Typography>
-                </Link>
-              ))}
+          <LogoTypography variant="h6">
+            CRM
+          </LogoTypography>
+          <Box sx={{ display: 'flex', alignItems: 'center', ml: 3 }}>
+            {pages.map((page) => (
+              <StyledLink 
+                key={page.label} 
+                to={page.path} 
+                style={({ isActive, isPending, isTransitioning }) => {
+                  return {
+                    textDecoration: isActive ? 'underline' : 'none'
+                  };
+                }}
+              >
+                {page.label}
+              </StyledLink>
+            ))}
           </Box>
         </Toolbar>
       </Container>
-    </AppBar>
+    </StyledAppBar>
   );
-}
+};
+
+export default Header;

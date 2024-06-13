@@ -1,17 +1,26 @@
-import React from 'react';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import { Provider } from 'react-redux';
-import { store } from './data/store';
+import { store } from './api/store';
 import Header from './Header';
-import logo from './logo.svg';
 import NonProfits from './pages/NonProfit';
-// import './App.css';
-import Dashboard from './pages/Notifications';
+import EmailTemplate from './pages/EmailTemplate';
+import SentEmails from './pages/SentEmails';
+import { SnackbarProvider } from './context';
 
 function App() {
   return (
     <Provider store={store}>
-      <Header />
-      <NonProfits />
+      <Router>
+        <SnackbarProvider>
+          <Header />
+          <Routes>
+            <Route path="/" element={<Navigate to="/non-profits" replace />} />
+            <Route path="/non-profits" element={<NonProfits />} />
+            <Route path="/email-template" element={<EmailTemplate />} />
+            <Route path="/sent-emails" element={<SentEmails />} />
+          </Routes>
+        </SnackbarProvider>
+      </Router>
     </Provider>
   );
 }

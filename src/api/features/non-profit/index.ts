@@ -1,15 +1,7 @@
-import { createApi, fetchBaseQuery, retry } from '@reduxjs/toolkit/query/react'
-import { NonProfit } from './types';
+import { api } from "../..";
+import { NonProfit } from "./types";
 
-const baseQuery = fetchBaseQuery({
-  baseUrl: 'http://localhost:3004',
-})
-
-const baseQueryWithRetry = retry(baseQuery, { maxRetries: 1 })
-
-export const api = createApi({
-  baseQuery: baseQueryWithRetry,
-  tagTypes: ['NonProfit', 'EmailTemplate', 'EmailSent'],
+export const NonProfitApi = api.injectEndpoints({
   endpoints: (builder) => ({
     getNonProfits: builder.query<NonProfit[], void>({
       query: () => `non-profits`,
@@ -33,7 +25,7 @@ export const api = createApi({
         body: nonProfit,
       }),
     }),
-  }),
+  })
 })
 
-export const { useGetNonProfitsQuery, useAddNonProfitMutation, useUpdateNonProfitMutation } = api;
+export const { useGetNonProfitsQuery, useAddNonProfitMutation, useUpdateNonProfitMutation } = NonProfitApi;

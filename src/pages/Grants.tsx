@@ -50,7 +50,6 @@ const Grants = () => {
             <ListComponent
               items={grants || []}
               fields={GrantsFields}
-              actions={[]}
             />
           )}
         </Grid>

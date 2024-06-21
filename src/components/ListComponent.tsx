@@ -67,11 +67,11 @@ const ListComponent = <T,>({ items, fields, actions }: Props<T>) => {
               >
                 <CardContent>
                   {fields.map((field) => (
-                    <Box key={field.key as string} sx={{ mb: 1 }}>
-                      <Typography variant="subtitle2" color="textSecondary">
+                    <Box key={field.key as string} sx={{ mb: 1, display: 'flex' }}>
+                      <Typography variant="subtitle2" fontWeight="bold" color="textSecondary" sx={{ minWidth: 150 }}>
                         {field.label}:
                       </Typography>
-                      <Typography variant="body2">
+                      <Typography variant="body2" sx={{ ml: 1 }}>
                         {String(item[field.key])}
                       </Typography>
                     </Box>
@@ -106,7 +106,11 @@ const ListComponent = <T,>({ items, fields, actions }: Props<T>) => {
         <TableHead>
           <TableRow>
             {fields.map((field) => (
-              <TableCell key={field.key as string}>{field.label}</TableCell>
+              <TableCell key={field.key as string}>
+                <Typography variant="subtitle1" fontWeight="bold">
+                  {field.label}
+                </Typography>
+              </TableCell>
             ))}
             {
               showActions && <TableCell>Actions</TableCell>

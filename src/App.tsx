@@ -6,6 +6,7 @@ import NonProfits from './pages/NonProfit';
 import EmailTemplate from './pages/EmailTemplate';
 import SentEmails from './pages/SentEmails';
 import { SnackbarProvider } from './context';
+import Grants from './pages/Grants';
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
             <Route path="/non-profits" element={<NonProfits />} />
             <Route path="/email-template" element={<EmailTemplate />} />
             <Route path="/sent-emails" element={<SentEmails />} />
+            <Route path="/grants" element={<Grants />} />
           </Routes>
         </SnackbarProvider>
       </Router>

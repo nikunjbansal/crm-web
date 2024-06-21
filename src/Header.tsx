@@ -7,6 +7,7 @@ const pages = [
   { label: 'Non Profits', path: '/non-profits' },
   { label: 'Email Template', path: '/email-template' },
   { label: 'Sent Emails', path: '/sent-emails' },
+  { label: 'Grants', path: '/grants' },
 ];
 
 const StyledAppBar = styled(AppBar)({

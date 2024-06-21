@@ -8,7 +8,7 @@ const baseQueryWithRetry = retry(baseQuery, { maxRetries: 1 })
 
 export const api = createApi({
   baseQuery: baseQueryWithRetry,
-  tagTypes: ['NonProfit', 'EmailTemplate', 'SentEmails'],
+  tagTypes: ['NonProfit', 'EmailTemplate', 'SentEmails', 'Grants'],
   endpoints: (builder) => ({
     // individual features will inject their own endpoints.
   }),
